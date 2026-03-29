@@ -6,6 +6,7 @@
 void handler(int sig){
 	char c;
 	printf("Seguro que quieres salir? [y/n] ");
+	fflush(stdout);
 	c = getchar();
 	if (c=='y' || c=='Y') exit(0);
 }
