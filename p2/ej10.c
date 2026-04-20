@@ -3,27 +3,24 @@
 
 int array[10] = {1,1,1,1,1,1,1,1,1,1};
 int len = 10;
-int i = 0;
 int total = 0;
 
 pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 
 void* count1(void* arg){
-	while (i < len){
-		pthread_mutex_unlock(&m);	
+	for(int i = 0 ;i < len/2; i++){
 		pthread_mutex_lock(&m);
 		total += array[i];
-		i += 1;
+		pthread_mutex_unlock(&m);	
 	}
 	return NULL;
 }
 
 void* count2(void* arg){
-	while (i < len){
-		pthread_mutex_unlock(&m);	
+	for(int i = (len/2)+1; i < len; i++){
 		pthread_mutex_lock(&m);
 		total += array[i];
-		i += 1;
+		pthread_mutex_unlock(&m);	
 	}
 	return NULL;
 }
